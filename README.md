@@ -1,2 +1,3 @@
 # htmlTime
-Create a new watch with an unused mobile phone and a small server.
+작은 서버로 사용하지 않는 휴대폰으로 시계를 만들거나, 컴퓨터를 잠시 시계로 활용 할 수 있습니다.
+배경이 제거된 이미지의 이름을 01.png로 설정하신 후, 프로젝트 폴더 최상단에 저장해두시면 뒷부분에 이미지가 나타납니다.
