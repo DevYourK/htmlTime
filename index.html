@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="./style.css">
+		<script>
+			function addZeros(num, digit) {
+				  var zero = '';
+				  num = num.toString();
+				  if (num.length < digit) {
+				    for (i = 0; i < digit - num.length; i++) {
+				      zero += '0';
+				    }
+				  }
+				  return zero + num;
+			}
+
+			function time() {
+				var cn = new Date();
+
+				var cal = cn.getFullYear() + '년 ' + (cn.getMonth() + 1) + "월 " + cn.getDate() + "일";
+				
+				var am_pm = '오전';
+				var ch = addZeros(cn.getHours(), 2);
+				var cm = addZeros(cn.getMinutes(), 2);
+				var cs = addZeros(cn.getSeconds(), 2);
+
+				if(ch >= 12) {am_pm = '오후'; ch = addZeros(cn.getHours() - 12, 2);}
+
+				document.getElementById("cyear").innerHTML = cal;
+				document.getElementById("ctime").innerHTML = am_pm + ' ' + ch + ' : ' + cm + ' : ' + cs;
+
+				setTimeout("time()", 1000);
+			}	
+		</script>
+	</head>
+	<body onload="time()">
+		<div class="block">
+			<div><h1 id="cyear"></h1><br><h2 id="ctime"></h2></div>
+		</div>
+	</body>
+</html>
