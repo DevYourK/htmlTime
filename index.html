@@ -2,40 +2,43 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <meta name="apple-mobile-web-app-title" content='탁상시계'>
+	    <meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="stylesheet" href="./style.css">
 		<script>
-			function addZeros(num, digit) {
-				  var zero = '';
-				  num = num.toString();
-				  if (num.length < digit) {
-				    for (i = 0; i < digit - num.length; i++) {
-				      zero += '0';
-				    }
-				  }
-				  return zero + num;
+			function zeroPlus(num) {
+				return ((num <= 9) ? '0' + num : num); 
 			}
 
 			function time() {
 				var cn = new Date();
+					cal = cn.getFullYear() + '년 ' + (cn.getMonth() + 1) + "월 " + cn.getDate() + "일";
+					ch_calc = cn.getHours();
+					am_pm = ((ch_calc >= 12) ? '오후' : '오전');
+					ch = ((ch_calc > 12) ? zeroPlus(ch_calc - 12): zeroPlus(ch_calc));
+					cm = zeroPlus(cn.getMinutes());
+					cs = zeroPlus(cn.getSeconds());
 
-				var cal = cn.getFullYear() + '년 ' + (cn.getMonth() + 1) + "월 " + cn.getDate() + "일";
-				
-				var am_pm = '오전';
-				var ch = addZeros(cn.getHours(), 2);
-				var cm = addZeros(cn.getMinutes(), 2);
-				var cs = addZeros(cn.getSeconds(), 2);
 
-				if(ch >= 12) {am_pm = '오후'; ch = addZeros(cn.getHours() - 12, 2);}
+				if(ch_calc >= 2 && ch_calc <= 7) {
+					if(ch_calc >= 3 && ch_calc <= 6) {
+						var eco = '[Good Night] ';
+						document.getElementById("block").style.opacity = "0.03";
+					} else {
+						var eco = '[Night Mode] ';
+						document.getElementById("block").style.opacity = "0.15";						
+					}
+				} else {var eco = ''; document.getElementById("block").style.opacity = "1";}
 
-				document.getElementById("cyear").innerHTML = cal;
-				document.getElementById("ctime").innerHTML = am_pm + ' ' + ch + ' : ' + cm + ' : ' + cs;
+				document.getElementById("cyear").innerHTML = eco + cal;
+				document.getElementById("ctime").innerHTML = am_pm + '&nbsp;&nbsp;' + ch + ' : ' + cm + ' : ' + cs;
 
-				setTimeout("time()", 1000);
+				setTimeout("time()", 100);
 			}	
 		</script>
 	</head>
 	<body onload="time()">
-		<div class="block">
+		<div class="block" id="block">
 			<div><h1 id="cyear"></h1><br><h2 id="ctime"></h2></div>
 		</div>
 	</body>
