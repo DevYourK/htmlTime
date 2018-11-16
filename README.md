@@ -1,6 +1,6 @@
 # htmlTime
 ## Use
-http://info.yourk.me/clock
+http://info.yourk.me/
 ## Intro
 Just html-and-javascript based watch.
 This clock does not require engines such as php and node.js. Only one web browser is required.
