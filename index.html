@@ -2,44 +2,23 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	    	<meta name="apple-mobile-web-app-title" content='탁상시계'>
-	    	<meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-title" content='탁상시계'>
+	    <meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="stylesheet" href="./style.css">
-		<script>
-			function zeroPlus(num) {
-				return ((num <= 9) ? '0' + num : num); 
-			}
-
-			function time() {
-				var cn = new Date();
-					cal = cn.getFullYear() + '년 ' + (cn.getMonth() + 1) + "월 " + cn.getDate() + "일";
-					ch_calc = cn.getHours();
-					am_pm = ((ch_calc >= 12) ? '오후' : '오전');
-					ch = ((ch_calc > 12) ? zeroPlus(ch_calc - 12): zeroPlus(ch_calc));
-					cm = zeroPlus(cn.getMinutes());
-					cs = zeroPlus(cn.getSeconds());
-
-
-				if(ch_calc >= 2 && ch_calc <= 7) {
-					if(ch_calc >= 3 && ch_calc <= 6) {
-						var eco = '[Good Night] ';
-						document.getElementById("block").style.opacity = "0.03";
-					} else {
-						var eco = '[Night Mode] ';
-						document.getElementById("block").style.opacity = "0.15";						
-					}
-				} else {var eco = ''; document.getElementById("block").style.opacity = "1";}
-
-				document.getElementById("cyear").innerHTML = eco + cal;
-				document.getElementById("ctime").innerHTML = am_pm + '&nbsp;&nbsp;' + ch + ' : ' + cm + ' : ' + cs;
-
-				setTimeout("time()", 100);
-			}	
-		</script>
+		<script src="./script.js"></script>
 	</head>
-	<body onload="time()">
-		<div class="block" id="block">
-			<div><h1 id="cyear"></h1><br><h2 id="ctime"></h2></div>
+	<body onload="time()" >
+		<div class="block image" id="block">
+			<div class="text" id="text" onclick="showMenu()"><h1 id="cyear"></h1><br><h2 id="ctime"></h2></div>
+		</div>
+		<div class="menu" id="menu">
+			<div class="menu-inside">
+				<button onclick="ecoOn()">에코<br>시작</button>
+				<button onclick="ecoOff()">에코<br>종료</button><br><br>
+				<button onclick="backgroundPlus()">배경<br>추가</button>
+				<button onclick="backgroundMinus()">배경<br>제거</button><br><br>
+				<button onclick="closeMenu()">나가기</button><br>
+			</div>
 		</div>
 	</body>
 </html>
