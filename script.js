@@ -6,24 +6,24 @@ function zeroPlus(num) {
 
 function time() {
 	var cn = new Date(),
-		cal = cn.getFullYear() + '년 ' + (cn.getMonth() + 1) + "월 " + cn.getDate() + "일",
+		cal = cn.getFullYear() + '-' + (cn.getMonth() + 1) + "-" + cn.getDate(),
 		ch_calc = cn.getHours(),
-		am_pm = ((ch_calc >= 12) ? '오후' : '오전'),
+		am_pm = ((ch_calc >= 12) ? 'PM' : 'AM'),
 		ch = ((ch_calc > 12) ? zeroPlus(ch_calc - 12): zeroPlus(ch_calc)),
 		cm = zeroPlus(cn.getMinutes()),
 		cs = zeroPlus(cn.getSeconds());
 
 		switch(eco_switch) {
 			case true:
-				var eco = "[ECO 밝기 50%] " ; document.getElementById("block").style.opacity = "0.5";
+				var eco = "[50%] " ; document.getElementById("block").style.opacity = "0.5";
 			break;
 			case false:
 				if(ch_calc >= 2 && ch_calc <= 7) {
 					if(ch_calc >= 3 && ch_calc <= 6) {
-						var eco = '[밝기 3%] ';
+						var eco = '[3%] ';
 						document.getElementById("block").style.opacity = "0.03";
 						} else {
-							var eco = '[밝기 15%] ';
+							var eco = '[15%] ';
 							document.getElementById("block").style.opacity = "0.15";
 					}
 				} else {
